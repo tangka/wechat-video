@@ -1,0 +1,7 @@
+interface:
+  display_name: "WeChat Weekly Video"
+  short_description: "Generate 3:4 weekly videos and covers"
+  brand_color: "#CD704F"
+  default_prompt: "Use $wechat-weekly-video to turn this week’s WeChat account material into a 3:4 video and cover."
+policy:
+  allow_implicit_invocation: true

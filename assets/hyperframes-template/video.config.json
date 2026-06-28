@@ -1,0 +1,89 @@
+{
+  "issueDate": "2026-06-28",
+  "account": "ClaudeDevs",
+  "title": "一周 Claude: Fable、降智和工作流",
+  "slug": "claude-weekly-2026-06-28",
+  "duration": {
+    "targetSeconds": 50,
+    "fps": 30,
+    "width": 1080,
+    "height": 1440
+  },
+  "outputs": {
+    "video": "output/claude-weekly-2026-06-28.mp4",
+    "cover": "output/claude-weekly-2026-06-28-cover.png",
+    "coverAtSeconds": 5
+  },
+  "voice": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "+30%",
+    "pitch": "-5Hz",
+    "gapSeconds": 0.12
+  },
+  "bgm": {
+    "file": "assets/bgm.mp3",
+    "volume": 0.045,
+    "fadeIn": 1,
+    "fadeOut": 1.4
+  },
+  "brand": {
+    "name": "ClaudeDevs",
+    "footer": "ClaudeDevs · weekly video",
+    "theme": "warm-editorial"
+  },
+  "scenes": [
+    {
+      "eyebrow": "Claude Weekly",
+      "chip": "2026.06.28",
+      "headline": ["一周 Claude", "不是变强", "是变稳"],
+      "note": "Fable、降智争议和 Claude Code 更新,都指向同一个问题:稳定性。",
+      "caption": "Fable、降智和工作流放在一起看",
+      "speech": "这一周 Claude 的消息很分裂。Fable 有回来的信号,社区又在吵降智,而 Claude Code 还在继续补工作流。",
+      "ghost": "Claude"
+    },
+    {
+      "eyebrow": "Fable Signal",
+      "chip": "not back yet",
+      "headline": ["Fable 有消息", "但还没真正回来"],
+      "note": "社区看到回归信号,但可用性仍然不一致。",
+      "caption": "Fable 有信号,但还没稳定回来",
+      "speech": "先看 Fable。社区开始看到回归信号,但还不能说它已经稳定回到所有人手里。",
+      "ghost": "Fable",
+      "points": ["状态页和截图开始出现", "用户关心稳定可用", "短暂闪现会放大焦虑"],
+      "card": {
+        "label": "r/ClaudeCode",
+        "title": "Anthropic speaks after 2 weeks",
+        "body": "讨论集中在 SOTA 模型限制、Fable 是否放出,以及全球用户是否会转向替代模型。",
+        "metaLeft": "Jun 27",
+        "metaRight": "source card"
+      }
+    },
+    {
+      "eyebrow": "Trust",
+      "chip": "model drift",
+      "headline": ["降智争议", "本质是模型信任"],
+      "note": "这些不是官方结论,但能解释用户为什么焦虑。",
+      "caption": "降智争议,本质是模型信任",
+      "speech": "再看降智争议。很多说法只是体感,但问题真实存在:当用户解释不了波动,就会用被削了来解释。",
+      "ghost": "Nerf",
+      "points": ["同样工作流突然跑不稳", "版本和限制不透明", "信任先于跑分被消耗"],
+      "card": {
+        "label": "r/Anthropic",
+        "title": "All Claude models got nerfed BADLY",
+        "body": "用户把速度变慢、思考变少、研究不足,统一解释成「被削弱」。",
+        "metaLeft": "Jun 27",
+        "metaRight": "community signal"
+      }
+    },
+    {
+      "eyebrow": "Takeaway",
+      "chip": "watch next",
+      "headline": ["强模型之外", "还要稳定工作流"],
+      "note": "下周继续看 Fable 可用性、Opus 体感反馈,以及 Claude Code 工作流是否继续公开化。",
+      "caption": "强模型之外,还要稳定工作流",
+      "speech": "所以这周的判断很简单:Claude 下一阶段拼的不是单次惊艳,而是能不能把强模型,清晰限制和成熟工作流一起交出来。",
+      "ghost": "Stable"
+    }
+  ]
+}
