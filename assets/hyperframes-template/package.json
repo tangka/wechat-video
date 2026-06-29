@@ -5,6 +5,7 @@
   "scripts": {
     "sync": "npx --yes tsx scripts/sync-config.ts",
     "bgm": "npx --yes tsx scripts/ensure-bgm.ts",
+    "voices": "npx --yes tsx scripts/audition-voices.ts",
     "voice": "npx --yes tsx scripts/synth-voice.ts",
     "render:silent": "npx --yes hyperframes@0.7.17 render -o output/silent.mp4",
     "mix": "npx --yes tsx scripts/build-output.ts",

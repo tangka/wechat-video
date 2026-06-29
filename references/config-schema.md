@@ -112,6 +112,8 @@ Reusable BGM and voice snippets are copied into generated projects under:
 - `assets/materials/bgm-presets.json`
 - `assets/materials/voice-presets.json`
 
+Run `npm run voices` inside a generated project to synthesize local audition files under `assets/materials/voice-samples/`.
+
 ## Optional Brand Fields
 
 - `brand.backgroundImage`: local image path, such as `assets/cover.png`. Use this for a generated cover background, X screenshot, or account-specific visual. Omit it when no image is needed.

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { cp, mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
+import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -76,6 +76,7 @@ async function createProject(outDir: string, force: boolean) {
   if (await exists(sharedMaterials)) {
     await mkdir(path.join(outDir, "assets"), { recursive: true });
     await cp(sharedMaterials, path.join(outDir, "assets", "materials"), { recursive: true, force: true });
+    await rm(path.join(outDir, "assets", "materials", "voice-samples"), { recursive: true, force: true });
   }
   const sharedOfficialLogos = path.join(skillRoot, "assets", "official-logos");
   if (await exists(sharedOfficialLogos)) {

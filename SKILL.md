@@ -101,6 +101,15 @@ Custom BGM is controlled by `bgm.file`, `bgm.sourceUrl`, `bgm.volume`, `bgm.fade
 
 Custom narration is controlled by `voice.voice`, `voice.rate`, `voice.pitch`, and `voice.gapSeconds`. Final loudness is controlled by `audio.voiceGain`, `audio.targetI`, `audio.targetLRA`, and `audio.targetTP`.
 
+Voice presets can be auditioned before rendering:
+
+```bash
+npm run voices
+npm run voices -- --preset tech_male_commentary
+```
+
+Samples are written to `assets/materials/voice-samples/`.
+
 ## Visual Constraints
 
 Read [references/visual-qa.md](references/visual-qa.md) before final render.

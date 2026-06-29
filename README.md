@@ -297,6 +297,34 @@ assets/materials/bgm-presets.json
 assets/materials/voice-presets.json
 ```
 
+试听所有口播预设：
+
+```bash
+cd /path/to/wechat-weekly-video
+npx --yes tsx scripts/audition-voices.ts
+open assets/materials/voice-samples
+```
+
+在生成后的视频项目里试听：
+
+```bash
+cd /path/to/article/video
+npm run voices
+open assets/materials/voice-samples
+```
+
+只试听某一个预设：
+
+```bash
+npm run voices -- --preset tech_male_commentary
+```
+
+自定义试听文案：
+
+```bash
+npm run voices -- --text "这里是 Codexx 的口播试听。Codex 这个词需要突出。"
+```
+
 常用字段：
 
 | 字段 | 作用 |

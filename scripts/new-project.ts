@@ -1,4 +1,4 @@
-import { cp, mkdir, stat } from "node:fs/promises";
+import { cp, mkdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -41,6 +41,7 @@ async function main() {
   if (await exists(sharedMaterials)) {
     await mkdir(path.join(outDir, "assets"), { recursive: true });
     await cp(sharedMaterials, path.join(outDir, "assets", "materials"), { recursive: true, force: true });
+    await rm(path.join(outDir, "assets", "materials", "voice-samples"), { recursive: true, force: true });
   }
   const sharedOfficialLogos = path.join(skillRoot, "assets", "official-logos");
   if (await exists(sharedOfficialLogos)) {

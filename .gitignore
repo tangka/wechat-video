@@ -6,4 +6,5 @@ output/
 *.mp3
 *.m4a
 *.aiff
-!assets/materials/**/*.mp3
+!assets/materials/bgm/*.mp3
+assets/materials/voice-samples/
