@@ -6,3 +6,4 @@ output/
 *.mp3
 *.m4a
 *.aiff
+!assets/materials/**/*.mp3
