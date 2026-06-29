@@ -1,6 +1,6 @@
 ---
 name: wechat-weekly-video
-description: Create short narrated WeChat public account weekly videos from draft articles, account material, or social-post summaries. Use when asked to turn a Codex/ClaudeDevs/公众号 weekly article or material folder into a 3:4 WeChat Channels-ready MP4 plus cover image, including article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, fixed BGM mixing, and QA checks.
+description: Create short narrated WeChat public account weekly videos from draft articles, account material, or social-post summaries. Use when asked to turn a Codex/ClaudeDevs/公众号 weekly article or material folder into a 3:4 WeChat Channels-ready MP4 plus cover image, including article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, material-center BGM mixing, and QA checks.
 ---
 
 # WeChat Weekly Video
@@ -21,7 +21,7 @@ Default target: `1080x1440`, `3:4`, `30fps`, about `45-60s`.
 - Deliver video plus cover. The cover must match the configured output dimensions.
 - Run QA before handoff: `ffprobe` dimensions/duration, HyperFrames `validate`/`inspect`, contact sheet, and at least one hero-frame extraction.
 - Treat audio loudness as part of QA. Final videos should not be quiet on a phone; the template normalizes to about `-13 LUFS`, and `npm run qa` reports `audio_mean`.
-- Use the fixed BGM mode unless the user explicitly asks for a different track: `Mixkit Uplifting Bass 726` from `https://assets.mixkit.co/music/726/726.mp3`, written to `assets/bgm.mp3`, with `bgm.volume=0.04`, `fadeIn=0.8`, and `fadeOut=1`. Do not synthesize BGM with FFmpeg oscillators/noise for normal runs.
+- Use the material-center BGM mode unless the user explicitly asks for a different track: `Mixkit Tech House Vibes 130`, copied into generated projects as `assets/materials/bgm/mixkit-tech-house-vibes-130.mp3`, with `bgm.volume=0.035`, `fadeIn=0.8`, and `fadeOut=1`. Do not synthesize BGM with FFmpeg oscillators/noise for normal runs.
 - Do not leave scenes static after the entrance animation. Every scene should have obvious continuous motion during its hold: visible sweep lines, moving dots/rings, background parallax, and card/point movement. Subtle drift alone is not enough.
 - Use official/source-account avatars for brand logos. Do not invent a brand logo, redraw another company's logo, or substitute a fan/community account avatar for an official company account.
 
@@ -47,7 +47,8 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts --out /path/to
 ```
 
 4. Review and edit `/path/to/article/video/video.config.json`.
-5. Put extra local assets under `/path/to/article/video/assets/` if needed. The template downloads the fixed BGM to `assets/bgm.mp3` through `npm run bgm` or automatically during `npm run build`.
+5. Put extra local assets under `/path/to/article/video/assets/` if needed. Reusable skill materials are copied into `/path/to/article/video/assets/materials/`.
+   - Reuse BGM and voice snippets from `/path/to/article/video/assets/materials/bgm-presets.json` and `/path/to/article/video/assets/materials/voice-presets.json`.
    - Reuse bundled official avatars from `assets/official-logos/` when a video needs Codex, Claude, OpenAI, or Anthropic source identity.
 6. Run:
 
@@ -86,10 +87,12 @@ For one video, edit the generated project rather than this skill repository:
 
 - `/path/to/article/video/video.config.json` for title, script, scenes, voice, BGM, output names, dimensions, logos, and source cards.
 - `/path/to/article/video/assets/` for screenshots, X covers, source images, logos, local BGM, and background images.
+- `/path/to/article/video/assets/materials/` for reusable BGM, background, source-card, and voice/BGM preset assets copied from the skill.
 - `/path/to/article/video/index.html` for one-off layout, typography, card, background, or animation changes.
 
 For future videos, edit the bundled template:
 
+- `assets/materials/` for reusable assets and presets that should be copied into every generated project.
 - `assets/hyperframes-template/video.config.json` for default voice, BGM, audio loudness, dimensions, and output conventions.
 - `assets/hyperframes-template/index.html` for default visual design and motion behavior.
 - `assets/official-logos/` for reusable official/source avatars.

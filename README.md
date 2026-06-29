@@ -99,6 +99,32 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
 /path/to/video-project/video.config.json
 ```
 
+## 素材中心
+
+Skill 仓库里有一个专门给别人配置和扩展的素材中心：
+
+```text
+/path/to/wechat-weekly-video/assets/materials/
+```
+
+新建视频项目时，它会被自动复制到：
+
+```text
+/path/to/article/video/assets/materials/
+```
+
+目录约定：
+
+| 目录 / 文件 | 作用 |
+|-|-|
+| `bgm/` | 可复用背景音乐 |
+| `backgrounds/` | 可复用背景图 / 封面底图 |
+| `source-cards/` | 可复用素材卡片 |
+| `bgm-presets.json` | BGM 配置片段 |
+| `voice-presets.json` | 口播音配置片段 |
+
+一次性素材，比如文章截图、X cover、临时图片，仍然放到生成项目的 `assets/` 根目录。只有希望分享给别人复用的素材，才放到 `assets/materials/`。
+
 ## 别人要改哪里
 
 普通使用者主要改生成出来的视频项目，而不是改 Skill 仓库本体。
@@ -110,6 +136,7 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
 ```text
 /path/to/article/video/video.config.json
 /path/to/article/video/assets/
+/path/to/article/video/assets/materials/
 ```
 
 常用字段：
@@ -131,10 +158,16 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
 | `scenes[].card.image` | 当前屏展示的素材图 |
 | `scenes[].logo` | 当前屏右下角音频响应 logo |
 
-素材图片、X cover、截图、logo、BGM 都放到：
+素材图片、X cover、截图、logo、单条视频专用 BGM 都放到：
 
 ```text
 /path/to/article/video/assets/
+```
+
+可复用 BGM、背景图、配置预设放到：
+
+```text
+/path/to/article/video/assets/materials/
 ```
 
 ### 改当前视频设计
@@ -167,9 +200,35 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
 
 这里适合固化默认声音、默认 BGM、默认尺寸和默认输出规则。
 
+改 Skill 自带素材中心：
+
+```text
+/path/to/wechat-weekly-video/assets/materials/
+```
+
+这里适合固化可复用 BGM、背景图、素材卡片和 voice/BGM 预设。
+
 ## 自定义背景音乐
 
 在生成项目的 `video.config.json` 里改 `bgm`。
+
+素材中心内置了一个 BGM：
+
+```text
+assets/materials/bgm/mixkit-tech-house-vibes-130.mp3
+```
+
+默认配置：
+
+```json
+"bgm": {
+  "file": "assets/materials/bgm/mixkit-tech-house-vibes-130.mp3",
+  "sourceName": "Mixkit Tech House Vibes 130",
+  "volume": 0.035,
+  "fadeIn": 0.8,
+  "fadeOut": 1
+}
+```
 
 使用本地音乐：
 
@@ -204,6 +263,12 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
 
 构建时会自动下载到 `bgm.file`。
 
+也可以从这里复制预设：
+
+```text
+assets/materials/bgm-presets.json
+```
+
 音量建议：
 
 | `bgm.volume` | 效果 |
@@ -224,6 +289,12 @@ npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts \
   "pitch": "-5Hz",
   "gapSeconds": 0.12
 }
+```
+
+也可以从这里复制预设：
+
+```text
+assets/materials/voice-presets.json
 ```
 
 常用字段：

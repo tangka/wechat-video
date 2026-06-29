@@ -29,10 +29,9 @@
     "gapSeconds": 0.12
   },
   "bgm": {
-    "file": "assets/bgm.mp3",
-    "sourceName": "Mixkit Uplifting Bass 726",
-    "sourceUrl": "https://assets.mixkit.co/music/726/726.mp3",
-    "volume": 0.04,
+    "file": "assets/materials/bgm/mixkit-tech-house-vibes-130.mp3",
+    "sourceName": "Mixkit Tech House Vibes 130",
+    "volume": 0.035,
     "fadeIn": 0.8,
     "fadeOut": 1
   },
@@ -86,9 +85,9 @@
 - `voice.rate`: `+30%`
 - `voice.pitch`: `-5Hz`
 - `voice.gapSeconds`: `0.12`
-- `bgm.sourceName`: `Mixkit Uplifting Bass 726`
-- `bgm.sourceUrl`: `https://assets.mixkit.co/music/726/726.mp3`
-- `bgm.volume`: `0.04`
+- `bgm.sourceName`: `Mixkit Tech House Vibes 130`
+- `bgm.file`: `assets/materials/bgm/mixkit-tech-house-vibes-130.mp3`
+- `bgm.volume`: `0.035`
 - `bgm.fadeIn`: `0.8`
 - `bgm.fadeOut`: `1`
 - `audio.voiceGain`: `1.25`
@@ -104,9 +103,14 @@ Final audio is normalized after voice/BGM mixing. The template intentionally use
 - `amix normalize=0` so a low-volume BGM track does not halve the narration loudness.
 - `loudnorm` with `audio.targetI = -13` for mobile-friendly playback.
 - `audio.voiceGain = 1.25` before normalization so narration remains dominant over BGM.
-- `Mixkit Uplifting Bass 726` as the default BGM. The template downloads `bgm.sourceUrl` to `bgm.file` when the file is missing.
+- `Mixkit Tech House Vibes 130` as the default BGM. It is copied from the skill material center into `assets/materials/bgm/` when a project is created.
 
 Do not generate synthetic BGM with FFmpeg oscillators/noise for normal runs. If the final video still sounds too quiet on a phone, raise `audio.voiceGain` slightly. If it sounds harsh or clipped, lower `audio.targetI` to `-14` or `-15`.
+
+Reusable BGM and voice snippets are copied into generated projects under:
+
+- `assets/materials/bgm-presets.json`
+- `assets/materials/voice-presets.json`
 
 ## Optional Brand Fields
 

@@ -72,6 +72,11 @@ async function createProject(outDir: string, force: boolean) {
   }
   await mkdir(path.dirname(outDir), { recursive: true });
   await cp(templateDir, outDir, { recursive: true, force });
+  const sharedMaterials = path.join(skillRoot, "assets", "materials");
+  if (await exists(sharedMaterials)) {
+    await mkdir(path.join(outDir, "assets"), { recursive: true });
+    await cp(sharedMaterials, path.join(outDir, "assets", "materials"), { recursive: true, force: true });
+  }
   const sharedOfficialLogos = path.join(skillRoot, "assets", "official-logos");
   if (await exists(sharedOfficialLogos)) {
     await mkdir(path.join(outDir, "assets"), { recursive: true });

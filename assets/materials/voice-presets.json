@@ -1,0 +1,23 @@
+{
+  "tech_male_commentary": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "+30%",
+    "pitch": "-5Hz",
+    "gapSeconds": 0.12
+  },
+  "standard_male_explainer": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunyangNeural",
+    "rate": "+20%",
+    "pitch": "-4Hz",
+    "gapSeconds": 0.14
+  },
+  "faster_tech_commentary": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "+38%",
+    "pitch": "-5Hz",
+    "gapSeconds": 0.08
+  }
+}

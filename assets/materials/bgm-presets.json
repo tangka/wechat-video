@@ -1,0 +1,17 @@
+{
+  "tech_house_vibes_130": {
+    "file": "assets/materials/bgm/mixkit-tech-house-vibes-130.mp3",
+    "sourceName": "Mixkit Tech House Vibes 130",
+    "volume": 0.035,
+    "fadeIn": 0.8,
+    "fadeOut": 1
+  },
+  "uplifting_bass_726": {
+    "file": "assets/bgm.mp3",
+    "sourceName": "Mixkit Uplifting Bass 726",
+    "sourceUrl": "https://assets.mixkit.co/music/726/726.mp3",
+    "volume": 0.04,
+    "fadeIn": 0.8,
+    "fadeOut": 1
+  }
+}
