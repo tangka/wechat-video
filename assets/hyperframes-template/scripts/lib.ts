@@ -31,15 +31,24 @@ export type VideoConfig = {
   };
   bgm?: {
     file: string;
+    sourceUrl?: string;
+    sourceName?: string;
     volume: number;
     fadeIn: number;
     fadeOut: number;
+  };
+  audio?: {
+    voiceGain?: number;
+    targetI?: number;
+    targetLRA?: number;
+    targetTP?: number;
   };
   brand: {
     name: string;
     footer: string;
     theme?: string;
     backgroundImage?: string;
+    logo?: string;
   };
   scenes: Array<{
     eyebrow: string;
@@ -49,6 +58,7 @@ export type VideoConfig = {
     caption: string;
     speech: string;
     ghost?: string;
+    logo?: string;
     points?: string[];
     card?: {
       label: string;
@@ -56,6 +66,7 @@ export type VideoConfig = {
       body: string;
       metaLeft?: string;
       metaRight?: string;
+      image?: string;
     };
   }>;
 };
@@ -74,6 +85,30 @@ export async function pathExists(file: string) {
   }
 }
 
+export function projectPath(file: string) {
+  return path.isAbsolute(file) ? file : path.join(root, file);
+}
+
+export async function ensureConfiguredBgm(config: VideoConfig) {
+  if (!config.bgm?.file) return { status: "disabled" as const };
+  if (await pathExists(config.bgm.file)) {
+    return { status: "exists" as const, file: projectPath(config.bgm.file) };
+  }
+  if (!config.bgm.sourceUrl) {
+    return { status: "missing" as const, file: projectPath(config.bgm.file) };
+  }
+
+  const response = await fetch(config.bgm.sourceUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to download BGM ${config.bgm.sourceUrl}: HTTP ${response.status}`);
+  }
+
+  const target = projectPath(config.bgm.file);
+  await ensureParent(config.bgm.file);
+  await fs.writeFile(target, Buffer.from(await response.arrayBuffer()));
+  return { status: "downloaded" as const, file: target, sourceUrl: config.bgm.sourceUrl };
+}
+
 export async function run(command: string, args: string[]) {
   await execFileAsync(command, args, { cwd: root, maxBuffer: 1024 * 1024 * 16 });
 }
@@ -81,7 +116,7 @@ export async function run(command: string, args: string[]) {
 export async function ffprobeJson(file: string) {
   const { stdout } = await execFileAsync(
     "ffprobe",
-    ["-hide_banner", "-loglevel", "error", "-show_entries", "stream=width,height,display_aspect_ratio,duration", "-show_entries", "format=duration", "-of", "json", file],
+    ["-hide_banner", "-loglevel", "error", "-show_entries", "stream=codec_type,width,height,display_aspect_ratio,duration", "-show_entries", "format=duration", "-of", "json", file],
     { cwd: root, maxBuffer: 1024 * 1024 * 4 },
   );
   return JSON.parse(stdout);

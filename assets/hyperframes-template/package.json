@@ -4,12 +4,13 @@
   "type": "module",
   "scripts": {
     "sync": "npx --yes tsx scripts/sync-config.ts",
+    "bgm": "npx --yes tsx scripts/ensure-bgm.ts",
     "voice": "npx --yes tsx scripts/synth-voice.ts",
     "render:silent": "npx --yes hyperframes@0.7.17 render -o output/silent.mp4",
     "mix": "npx --yes tsx scripts/build-output.ts",
     "qa": "npx --yes tsx scripts/qa.ts",
-    "validate": "npm run sync && npx --yes hyperframes@0.7.17 lint && npx --yes hyperframes@0.7.17 validate && npx --yes hyperframes@0.7.17 inspect",
-    "build": "npm run sync && npm run voice && npm run render:silent && npm run mix && npm run qa",
+    "validate": "npm run sync && npx --yes hyperframes@0.7.17 lint && npx --yes hyperframes@0.7.17 validate --timeout 20000 && npx --yes hyperframes@0.7.17 inspect --timeout 20000",
+    "build": "npm run sync && npm run bgm && npm run voice && npm run render:silent && npm run mix && npm run qa",
     "preview": "npm run sync && npx --yes hyperframes@0.7.17 preview"
   }
 }

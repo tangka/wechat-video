@@ -1,8 +1,19 @@
 import path from "node:path";
-import { ffprobeJson, pathExists, readConfig, root, run } from "./lib.ts";
+import { ensureParent, execFileAsync, ffprobeJson, pathExists, readConfig, root, run } from "./lib.ts";
 
 function fail(message: string): never {
   throw new Error(message);
+}
+
+async function detectMeanVolume(file: string) {
+  const { stderr } = await execFileAsync(
+    "ffmpeg",
+    ["-hide_banner", "-nostats", "-i", file, "-map", "0:a:0", "-filter:a", "volumedetect", "-f", "null", "-"],
+    { cwd: root, maxBuffer: 1024 * 1024 * 4 },
+  );
+  const match = stderr.match(/mean_volume:\s*(-?\d+(?:\.\d+)?) dB/);
+  if (!match) fail("Unable to detect audio mean volume");
+  return Number(match[1]);
 }
 
 async function main() {
@@ -13,8 +24,10 @@ async function main() {
   if (!(await pathExists(cover))) fail(`Missing cover: ${cover}`);
 
   const videoMeta = await ffprobeJson(video);
-  const stream = videoMeta.streams?.[0];
+  const stream = videoMeta.streams?.find((item: { codec_type?: string }) => item.codec_type === "video") ?? videoMeta.streams?.[0];
   if (!stream) fail("No video stream found");
+  const audioStream = videoMeta.streams?.find((item: { codec_type?: string }) => item.codec_type === "audio");
+  if (!audioStream) fail("No audio stream found");
   if (stream.width !== config.duration.width || stream.height !== config.duration.height) {
     fail(`Video size mismatch: got ${stream.width}x${stream.height}, expected ${config.duration.width}x${config.duration.height}`);
   }
@@ -29,7 +42,13 @@ async function main() {
     fail(`Cover size mismatch: got ${coverStream.width}x${coverStream.height}, expected ${config.duration.width}x${config.duration.height}`);
   }
 
+  const meanVolume = await detectMeanVolume(video);
+  if (meanVolume < -28) {
+    fail(`Audio too quiet: mean_volume=${meanVolume}dB. Increase audio.voiceGain or target a louder audio.targetI.`);
+  }
+
   const qaDir = path.join(root, "output", "qa");
+  await ensureParent(path.join(qaDir, "contact-sheet.jpg"));
   await run("ffmpeg", [
     "-hide_banner",
     "-loglevel",
@@ -38,7 +57,7 @@ async function main() {
     "-i",
     video,
     "-vf",
-    "fps=1/5,scale=270:-1,tile=5x2",
+    "fps=1/5,scale=270:-1:out_range=pc,format=yuvj420p,tile=5x2",
     "-frames:v",
     "1",
     "-update",
@@ -59,7 +78,7 @@ async function main() {
     path.join(qaDir, "hero-frame.png"),
   ]);
 
-  console.log(`qa=ok video=${stream.width}x${stream.height} aspect=${stream.display_aspect_ratio}`);
+  console.log(`qa=ok video=${stream.width}x${stream.height} aspect=${stream.display_aspect_ratio} audio_mean=${meanVolume}dB`);
 }
 
 main().catch((error) => {

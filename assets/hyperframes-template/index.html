@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1440" />
     <link rel="icon" href="data:," />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="./assets/vendor/gsap.min.js"></script>
     <script src="./video.config.js"></script>
     <style>
       * {
@@ -72,6 +72,109 @@
           linear-gradient(90deg, rgba(23, 20, 15, 0.045) 1px, rgba(255, 255, 255, 0) 1px);
         background-size: 56px 56px;
         mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.08));
+      }
+
+      .motion-field {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        overflow: hidden;
+        opacity: 0.86;
+        pointer-events: none;
+      }
+
+      .motion-streak {
+        position: absolute;
+        left: -980px;
+        top: 330px;
+        width: 980px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(205, 112, 79, 0.82), rgba(56, 84, 116, 0.74), rgba(255, 255, 255, 0));
+        box-shadow: 0 0 38px rgba(205, 112, 79, 0.34);
+        transform: rotate(-14deg);
+      }
+
+      .motion-streak.is-second {
+        top: 910px;
+        height: 7px;
+        opacity: 0.62;
+        transform: rotate(12deg);
+      }
+
+      .signal-line {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 408px;
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(205, 112, 79, 0), rgba(205, 112, 79, 0.92), rgba(56, 84, 116, 0.78), rgba(205, 112, 79, 0));
+        box-shadow: 0 0 30px rgba(205, 112, 79, 0.28);
+        transform-origin: left center;
+      }
+
+      .signal-line.is-vertical {
+        top: 86px;
+        right: auto;
+        bottom: 180px;
+        left: 58px;
+        width: 6px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(205, 112, 79, 0.98), rgba(56, 84, 116, 0.24));
+        transform-origin: top center;
+      }
+
+      .signal-line.is-short {
+        top: 1050px;
+        right: 76px;
+        left: 410px;
+        height: 7px;
+        opacity: 0.72;
+        background: linear-gradient(90deg, rgba(56, 84, 116, 0), rgba(56, 84, 116, 0.82), rgba(205, 112, 79, 0.84), rgba(56, 84, 116, 0));
+        transform-origin: right center;
+      }
+
+      .motion-orb {
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        border: 5px solid rgba(23, 20, 15, 0.34);
+        border-radius: 999px;
+        background: rgba(255, 252, 244, 0.68);
+        box-shadow: 0 0 44px rgba(205, 112, 79, 0.38);
+      }
+
+      .motion-orb.is-a {
+        top: 720px;
+        left: 140px;
+      }
+
+      .motion-orb.is-b {
+        right: 130px;
+        bottom: 360px;
+        width: 24px;
+        height: 24px;
+        border-color: rgba(205, 112, 79, 0.46);
+      }
+
+      .motion-radar {
+        position: absolute;
+        top: 170px;
+        right: 72px;
+        width: 230px;
+        height: 230px;
+        border: 4px solid rgba(23, 20, 15, 0.13);
+        border-radius: 999px;
+      }
+
+      .motion-radar::after {
+        position: absolute;
+        inset: 36px;
+        border-top: 5px solid rgba(205, 112, 79, 0.44);
+        border-right: 5px solid rgba(56, 84, 116, 0.32);
+        border-radius: 999px;
+        content: "";
       }
 
       .ghost {
@@ -206,6 +309,20 @@
         color: #17140f;
       }
 
+      .source-card.has-image {
+        min-height: 648px;
+      }
+
+      .persona-image {
+        width: 100%;
+        height: 188px;
+        margin-top: 26px;
+        object-fit: contain;
+        border: 2px solid rgba(23, 20, 15, 0.1);
+        border-radius: 24px;
+        background: rgba(255, 252, 244, 0.84);
+      }
+
       .source-card.is-right {
         right: 0;
         transform: rotate(1.8deg);
@@ -242,6 +359,15 @@
         font-weight: 900;
         letter-spacing: 0;
         line-height: 1.07;
+      }
+
+      .source-card.has-image .source-title {
+        margin-top: 24px;
+        font-size: 38px;
+      }
+
+      .source-card.has-image .source-body {
+        font-size: 25px;
       }
 
       .source-body {
@@ -367,6 +493,70 @@
         font-size: 20px;
         letter-spacing: 0.04em;
       }
+
+      .voice-logo {
+        position: absolute;
+        z-index: 11;
+        right: 46px;
+        bottom: 188px;
+        width: 96px;
+        height: 96px;
+        border: 1px solid rgba(23, 20, 15, 0.08);
+        border-radius: 24px;
+        background: rgba(255, 252, 244, 0.7);
+        box-shadow: 0 16px 38px rgba(67, 47, 32, 0.14);
+        backdrop-filter: blur(12px);
+        pointer-events: none;
+        transform-origin: center;
+      }
+
+      .voice-logo-ring {
+        display: none;
+      }
+
+      .voice-logo-core {
+        position: absolute;
+        inset: 9px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid rgba(23, 20, 15, 0.08);
+        border-radius: 18px;
+        background: rgba(255, 252, 244, 0.82);
+      }
+
+      .voice-logo-img {
+        width: 88%;
+        height: 88%;
+        object-fit: contain;
+      }
+
+      .voice-logo-text {
+        color: #17140f;
+        font-family: monospace;
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .voice-bars {
+        position: absolute;
+        right: 7px;
+        bottom: 7px;
+        display: flex;
+        height: 20px;
+        align-items: flex-end;
+        gap: 4px;
+      }
+
+      .voice-bar {
+        display: block;
+        width: 4px;
+        height: 16px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #cd704f, #385474);
+        transform-origin: bottom center;
+      }
     </style>
   </head>
   <body>
@@ -417,11 +607,17 @@
       }
 
       function buildSourceCard(card, right) {
-        var sourceCard = el("div", "source-card " + (right ? "is-right" : "is-left"));
+        var sourceCard = el("div", "source-card " + (right ? "is-right" : "is-left") + (card.image ? " has-image" : ""));
         var label = el("div", "source-label");
         label.appendChild(el("span", "", card.label || "source"));
         label.appendChild(el("span", "source-dot"));
         sourceCard.appendChild(label);
+        if (card.image) {
+          var image = el("img", "persona-image");
+          image.src = card.image;
+          image.alt = "";
+          sourceCard.appendChild(image);
+        }
         sourceCard.appendChild(el("div", "source-title", card.title || "Source note"));
         sourceCard.appendChild(el("div", "source-body", card.body || ""));
         var meta = el("div", "source-meta");
@@ -451,13 +647,53 @@
         return strip;
       }
 
+      function sceneLogoSource(scene) {
+        return scene.logo || (config.brand && config.brand.logo) || "";
+      }
+
+      function sceneLogoLabel(scene) {
+        var raw =
+          (Array.isArray(scene.headline) && scene.headline.length && scene.headline[0]) ||
+          scene.eyebrow ||
+          (config.brand && config.brand.name) ||
+          config.account ||
+          "AI";
+        return String(raw).replace(/[^\w\u4e00-\u9fa5]/g, "").slice(0, 6) || "AI";
+      }
+
+      function buildVoiceLogo(scene) {
+        var logo = el("div", "voice-logo");
+        logo.setAttribute("data-layout-ignore", "");
+        logo.setAttribute("data-layout-allow-overflow", "");
+        logo.appendChild(el("div", "voice-logo-ring"));
+        var core = el("div", "voice-logo-core");
+        var source = sceneLogoSource(scene);
+        if (source) {
+          var image = el("img", "voice-logo-img");
+          image.src = source;
+          image.alt = "";
+          core.appendChild(image);
+        } else {
+          core.appendChild(el("span", "voice-logo-text", sceneLogoLabel(scene)));
+        }
+        logo.appendChild(core);
+        var bars = el("div", "voice-bars");
+        for (var i = 0; i < 4; i += 1) {
+          bars.appendChild(el("i", "voice-bar"));
+        }
+        logo.appendChild(bars);
+        return logo;
+      }
+
       function buildScene(scene, index) {
         var id = "scene-" + String(index + 1).padStart(2, "0");
         var node = el("section", "scene");
         node.id = id;
         node.style.opacity = index === 0 ? "1" : "0";
 
-        node.appendChild(el("div", "base"));
+        var base = el("div", "base");
+        base.setAttribute("data-layout-allow-overflow", "");
+        node.appendChild(base);
 
         if (config.brand && config.brand.backgroundImage) {
           var image = el("img", "background-image");
@@ -468,6 +704,18 @@
         }
 
         node.appendChild(el("div", "grain"));
+        var motion = el("div", "motion-field");
+        motion.setAttribute("data-layout-ignore", "");
+        motion.setAttribute("data-layout-allow-overflow", "");
+        motion.appendChild(el("div", "motion-streak"));
+        motion.appendChild(el("div", "motion-streak is-second"));
+        motion.appendChild(el("div", "signal-line is-horizontal"));
+        motion.appendChild(el("div", "signal-line is-vertical"));
+        motion.appendChild(el("div", "signal-line is-short"));
+        motion.appendChild(el("div", "motion-orb is-a"));
+        motion.appendChild(el("div", "motion-orb is-b"));
+        motion.appendChild(el("div", "motion-radar"));
+        node.appendChild(motion);
         var ghost = el("div", "ghost");
         ghost.dataset.word = scene.ghost || scene.eyebrow || config.account || "Weekly";
         ghost.setAttribute("data-layout-ignore", "");
@@ -498,6 +746,7 @@
         }
         content.appendChild(stage);
         node.appendChild(content);
+        node.appendChild(buildVoiceLogo(scene));
         return node;
       }
 
@@ -543,6 +792,76 @@
         if (q(selector + " .summary-chip")) {
           tl.from(selector + " .summary-chip", { y: 28, opacity: 0, scale: 0.98, duration: 0.46, stagger: 0.08, ease: "power3.out" }, start + 1.12);
         }
+        tl.from(selector + " .voice-logo", { y: 34, opacity: 0, scale: 0.68, duration: 0.58, ease: "back.out(1.6)" }, start + 1.16);
+      }
+
+      function animateSignalPulses(selector, holdStart, end) {
+        var step = 0.72;
+        var t = holdStart;
+        var beat = 0;
+        while (t < end - 0.08) {
+          var grow = Math.min(0.32, end - t);
+          var shrink = Math.min(0.34, Math.max(0, end - t - grow));
+          var strong = beat % 3 === 0;
+          tl.to(selector + " .signal-line.is-horizontal", { scaleX: strong ? 1.08 : 0.84, opacity: strong ? 0.96 : 0.7, duration: grow, ease: "sine.inOut" }, t);
+          tl.to(selector + " .signal-line.is-horizontal", { scaleX: strong ? 0.34 : 0.48, opacity: 0.44, duration: shrink, ease: "sine.inOut" }, t + grow);
+          tl.to(selector + " .signal-line.is-vertical", { scaleY: strong ? 1 : 0.82, opacity: strong ? 0.96 : 0.76, duration: grow, ease: "sine.inOut" }, t + 0.06);
+          tl.to(selector + " .signal-line.is-vertical", { scaleY: strong ? 0.3 : 0.44, opacity: 0.42, duration: shrink, ease: "sine.inOut" }, t + grow + 0.06);
+          tl.to(selector + " .signal-line.is-short", { scaleX: strong ? 0.98 : 0.74, opacity: strong ? 0.88 : 0.64, duration: grow, ease: "sine.inOut" }, t + 0.12);
+          tl.to(selector + " .signal-line.is-short", { scaleX: strong ? 0.24 : 0.36, opacity: 0.34, duration: shrink, ease: "sine.inOut" }, t + grow + 0.12);
+          t += step;
+          beat += 1;
+        }
+      }
+
+      function animateVoiceLogo(selector, index, holdStart, end) {
+        var t = holdStart + 0.1;
+        var beat = 0;
+        while (t < end - 0.1) {
+          var energy = 0.62 + Math.abs(Math.sin((beat + 1) * (index + 2) * 1.37)) * 0.38;
+          var up = 0.16;
+          var down = 0.24;
+          tl.to(selector + " .voice-logo", { scale: 0.98 + energy * 0.16, duration: up, ease: "power2.out" }, t);
+          tl.to(selector + " .voice-logo", { scale: 1, duration: down, ease: "sine.out" }, t + up);
+          tl.to(selector + " .voice-logo-ring", { scale: 1.04 + energy * 0.24, opacity: 0.2 + energy * 0.42, duration: up, ease: "power2.out" }, t);
+          tl.to(selector + " .voice-logo-ring", { scale: 1, opacity: 0.34, duration: down, ease: "sine.out" }, t + up);
+          tl.to(selector + " .voice-logo-core", { scale: 0.98 + energy * 0.1, filter: "saturate(" + (1.05 + energy * 0.35) + ")", duration: up, ease: "power2.out" }, t);
+          tl.to(selector + " .voice-logo-core", { scale: 1, filter: "saturate(1)", duration: down, ease: "sine.out" }, t + up);
+          tl.to(selector + " .voice-bar", { scaleY: function (i) { return 0.36 + energy * (0.46 + i * 0.11); }, opacity: 0.55 + energy * 0.4, duration: up, stagger: 0.025, ease: "power2.out" }, t);
+          tl.to(selector + " .voice-bar", { scaleY: 0.3, opacity: 0.52, duration: down, stagger: 0.018, ease: "sine.out" }, t + up);
+          t += 0.42;
+          beat += 1;
+        }
+      }
+
+      function animateSceneHold(id, index, start, end) {
+        var selector = "#" + id;
+        var holdStart = start + 1.55;
+        var holdDuration = Math.max(0.6, end - holdStart);
+        var dir = index % 2 === 0 ? 1 : -1;
+        if (q(selector + " .background-image")) {
+          tl.to(selector + " .background-image", { x: 90 * dir, y: -42, scale: 1.09, duration: holdDuration, ease: "sine.inOut" }, holdStart);
+        }
+        tl.fromTo(selector + " .motion-streak:not(.is-second)", { x: -160, opacity: 0.18 }, { x: 2380, opacity: 0.9, duration: holdDuration, ease: "none" }, holdStart);
+        tl.fromTo(selector + " .motion-streak.is-second", { x: 1640, opacity: 0.12 }, { x: -1180, opacity: 0.72, duration: holdDuration, ease: "none" }, holdStart + 0.35);
+        animateSignalPulses(selector, holdStart, end);
+        animateVoiceLogo(selector, index, holdStart, end);
+        tl.to(selector + " .motion-orb.is-a", { x: 680 * dir, y: -250, scale: 1.75, duration: holdDuration, ease: "none" }, holdStart + 0.12);
+        tl.to(selector + " .motion-orb.is-b", { x: -520 * dir, y: 260, scale: 1.55, duration: holdDuration, ease: "none" }, holdStart + 0.28);
+        tl.to(selector + " .motion-radar", { rotation: 180 * dir, scale: 1.18, x: 42 * dir, y: 24, duration: holdDuration, ease: "none" }, holdStart);
+        tl.to(selector + " .base", { scale: 1.045, x: -36 * dir, y: 22, duration: holdDuration, ease: "sine.inOut" }, holdStart);
+        tl.to(selector + " .ghost", { x: 92 * dir, y: -56, opacity: 0.92, duration: holdDuration, ease: "sine.inOut" }, holdStart + 0.05);
+        tl.to(selector + " .headline", { x: 20 * dir, y: -14, duration: holdDuration, ease: "sine.inOut" }, holdStart + 0.08);
+        tl.to(selector + " .note", { x: -20 * dir, y: 14, duration: holdDuration, ease: "sine.inOut" }, holdStart + 0.12);
+        if (q(selector + " .source-card")) {
+          tl.to(selector + " .source-card", { x: 34 * dir, y: -30, rotation: dir * 3.4, scale: 1.035, duration: holdDuration, ease: "sine.inOut" }, holdStart + 0.16);
+        }
+        if (q(selector + " .point")) {
+          tl.to(selector + " .point", { x: 28 * dir, y: -24, scale: 1.025, duration: holdDuration, stagger: 0.08, ease: "sine.inOut" }, holdStart + 0.22);
+        }
+        if (q(selector + " .summary-chip")) {
+          tl.to(selector + " .summary-chip", { x: 22 * dir, y: -24, scale: 1.03, duration: holdDuration, stagger: 0.06, ease: "sine.inOut" }, holdStart + 0.2);
+        }
       }
 
       function crossfade(oldId, newId, start) {
@@ -563,6 +882,7 @@
           crossfade(previousId, currentId, start);
         }
         animateSceneIn(currentId, start + (index === 0 ? 0 : 0.1));
+        animateSceneHold(currentId, index, start, Math.min(duration - 0.7, (index + 1) * sceneLength - 0.55));
       });
 
       captions.forEach(function (caption) {

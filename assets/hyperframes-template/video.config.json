@@ -23,9 +23,17 @@
   },
   "bgm": {
     "file": "assets/bgm.mp3",
-    "volume": 0.045,
-    "fadeIn": 1,
-    "fadeOut": 1.4
+    "sourceName": "Mixkit Uplifting Bass 726",
+    "sourceUrl": "https://assets.mixkit.co/music/726/726.mp3",
+    "volume": 0.04,
+    "fadeIn": 0.8,
+    "fadeOut": 1
+  },
+  "audio": {
+    "voiceGain": 1.25,
+    "targetI": -13,
+    "targetLRA": 11,
+    "targetTP": -1.5
   },
   "brand": {
     "name": "ClaudeDevs",

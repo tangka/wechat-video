@@ -37,6 +37,11 @@ async function main() {
 
   await mkdir(path.dirname(outDir), { recursive: true });
   await cp(templateDir, outDir, { recursive: true, force });
+  const sharedOfficialLogos = path.join(skillRoot, "assets", "official-logos");
+  if (await exists(sharedOfficialLogos)) {
+    await mkdir(path.join(outDir, "assets"), { recursive: true });
+    await cp(sharedOfficialLogos, path.join(outDir, "assets", "official-logos"), { recursive: true, force: true });
+  }
   console.log(outDir);
 }
 
