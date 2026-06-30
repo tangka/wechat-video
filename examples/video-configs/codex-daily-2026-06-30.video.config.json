@@ -1,0 +1,151 @@
+{
+  "issueDate": "2026-06-30",
+  "account": "Codexx",
+  "title": "今日 Codex 动态: 快捷键、权限和额度重置",
+  "slug": "codexx-daily-codex-2026-06-30",
+  "duration": {
+    "targetSeconds": 66,
+    "fps": 30,
+    "width": 1080,
+    "height": 1440
+  },
+  "outputs": {
+    "video": "output/codexx-daily-codex-2026-06-30.mp4",
+    "cover": "output/codexx-daily-codex-2026-06-30-cover.png",
+    "coverAtSeconds": 6
+  },
+  "voice": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "+30%",
+    "pitch": "-5Hz",
+    "gapSeconds": 0.1
+  },
+  "bgm": {
+    "file": "assets/materials/bgm/mixkit-tech-house-vibes-130.mp3",
+    "sourceName": "Mixkit Tech House Vibes 130",
+    "volume": 0.035,
+    "fadeIn": 0.8,
+    "fadeOut": 1
+  },
+  "audio": {
+    "voiceGain": 1.25,
+    "targetI": -13,
+    "targetLRA": 11,
+    "targetTP": -1.5
+  },
+  "brand": {
+    "name": "Codexx",
+    "footer": "Codexx · 今日 Codex 动态",
+    "theme": "codex-clean",
+    "backgroundImage": "assets/source/01-openai-devs-shortcuts.png",
+    "logo": "assets/source/openai-devs-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "eyebrow": "Daily Codex",
+      "chip": "2026.06.30",
+      "headline": ["今日 Codex", "动态", "看一遍"],
+      "note": "今日 Codex 动态:五条更新。",
+      "caption": "今日 Codex 动态",
+      "speech": "今天的 Codex 动态很集中。第一条是官方预告快捷键升级,第二条是权限配置大改,后面还有 CLI 维护版、Andrew 访谈和额度重置补偿。",
+      "ghost": "DAILY",
+      "logo": "assets/source/openai-devs-avatar.jpg"
+    },
+    {
+      "eyebrow": "Product Signal",
+      "chip": "July 15",
+      "headline": ["快捷键升级", "是今天最大信号"],
+      "note": "OpenAI Developers 的预告互动最高,说明 Codex 桌面端工作流还在继续加速。",
+      "caption": "7 月 15 日看快捷键",
+      "speech": "今天热度最高的是 OpenAI Developers:Codex 快捷键要升级,时间点是七月十五日。这不是大版本说明,但它指向一个方向:桌面端工作流会继续变快。",
+      "ghost": "SHORTCUT",
+      "logo": "assets/source/openai-devs-avatar.jpg",
+      "points": ["官方账号发布", "43.4 万浏览", "7 月 15 日升级"],
+      "card": {
+        "label": "OpenAI Developers",
+        "title": "Your favorite Codex shortcuts",
+        "body": "一句话预告,但互动最高,适合做今天的第一条。",
+        "metaLeft": "OpenAI Devs",
+        "metaRight": "preview",
+        "image": "assets/source/01-openai-devs-shortcuts.png"
+      }
+    },
+    {
+      "eyebrow": "Power Users",
+      "chip": "permission profiles",
+      "headline": ["权限配置", "比沙盒更细"],
+      "note": "Tibo 说粗粒度 sandbox mode 有替代方案:可复用、可继承的权限配置文件。",
+      "caption": "高级用户看权限配置",
+      "speech": "更硬核的是 Tibo 这条。Codex 推出 permission profiles,可以把读写拒绝规则、网络域名和 Unix socket 绑定到任务上,目标是每个任务最小权限。",
+      "ghost": "PROFILE",
+      "logo": "assets/source/tibo-avatar.jpg",
+      "points": ["读 / 写 / 拒绝规则", "甚至可管 **/*.env", "按域控制网络和 socket"],
+      "card": {
+        "label": "Tibo",
+        "title": "Least privilege per task",
+        "body": "从粗粒度沙盒转向可继承权限配置,还包括 fail-closed admin allowlists。",
+        "metaLeft": "10.9 万浏览",
+        "metaRight": "power users",
+        "image": "assets/source/02-tibo-permission-profiles.png"
+      }
+    },
+    {
+      "eyebrow": "Inside Codex",
+      "chip": "Andrew",
+      "headline": ["产品工作", "也在变形"],
+      "note": "Lenny 转述 Andrew:构建变便宜以后,难点从“要不要做”变成“哪个原型值得押注”。",
+      "caption": "Andrew 访谈讲产品变化",
+      "speech": "Lenny 这条适合做中段观点。Andrew 的核心判断是,产品工作已经反过来了。构建变便宜后,难点不是要不要做,而是在一堆原型里判断该合并什么、押注什么。",
+      "ghost": "PRODUCT",
+      "logo": "assets/source/lenny-avatar.jpg",
+      "points": ["构建成本下降", "原型变多", "真正稀缺的是判断力"],
+      "card": {
+        "label": "Lenny",
+        "title": "Takeaways from Codex lead",
+        "body": "关于 Codex 桌面端、产品流程、设计判断和团队运转的一组观察。",
+        "metaLeft": "3.1 万浏览",
+        "metaRight": "interview",
+        "image": "assets/source/04-lenny-andrew-takeaways.png"
+      }
+    },
+    {
+      "eyebrow": "Maintenance",
+      "chip": "CLI 0.142.4",
+      "headline": ["CLI 小版本", "主要是稳定性"],
+      "note": "Codex CLI 0.142.4 是常规维护版,没有用户可见变化,重点是内部稳定性。",
+      "caption": "CLI 维护版补稳定",
+      "speech": "版本更新这边,Codex CLI 零点一四二点四发布。它不是功能大改,而是常规维护版:没有用户可见变化,主要补内部稳定性。",
+      "ghost": "0.142.4",
+      "logo": "assets/source/codex-changelog-avatar.jpg",
+      "points": ["常规维护版本", "无用户可见变化", "内部稳定性改进"],
+      "card": {
+        "label": "Codex Changelog",
+        "title": "Codex CLI 0.142.4",
+        "body": "Routine maintenance release, internal stability improvements.",
+        "metaLeft": "1.8 万浏览",
+        "metaRight": "release",
+        "image": "assets/source/03-cli-01424.png"
+      }
+    },
+    {
+      "eyebrow": "Quota",
+      "chip": "reset bank",
+      "headline": ["额度补偿", "今天也有后续"],
+      "note": "Tibo 说额度将再次完全重置,并额外发放一次 24 小时内可用的 reset。",
+      "caption": "额度重置 + reset bank",
+      "speech": "最后是额度补偿。Tibo 说 Codex 使用额度会再次完全重置,并额外发一次二十四小时内可用的 reset。原因是部分用户的后台消耗确实比预期更快。",
+      "ghost": "RESET",
+      "logo": "assets/source/tibo-avatar.jpg",
+      "points": ["额度完全重置", "额外一次 reset bank", "后台消耗问题已修复"],
+      "card": {
+        "label": "Tibo",
+        "title": "Usage limits reset again",
+        "body": "修复 auto-review、subagent 误触发、后台建议重复和显示口径问题。",
+        "metaLeft": "2.6 万浏览",
+        "metaRight": "relief",
+        "image": "assets/source/05-tibo-reset-bank.png"
+      }
+    }
+  ]
+}

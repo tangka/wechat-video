@@ -27,6 +27,7 @@ npm run qa
 - Cover dimensions match video dimensions.
 - No obvious card/text overlap in `contact-sheet.jpg`.
 - Captions do not cover source cards or essential headline text.
+- If an X/Twitter card screenshot exists, it should be shown directly as a large readable card, not reduced to a small image inside another card.
 - No long blank middle area unless the scene intentionally needs a quiet hold.
 - No static holds: after the entrance animation, each scene still needs obvious ongoing motion in at least three layers, such as sweep lines, breathing/growing signal lines, moving dots/rings, background parallax, audio-reactive logo badge, and card/point movement.
 

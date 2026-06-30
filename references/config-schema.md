@@ -43,7 +43,7 @@
   },
   "brand": {
     "name": "ClaudeDevs",
-    "footer": "ClaudeDevs · weekly video",
+    "footer": "ClaudeDevs · video",
     "theme": "warm-editorial",
     "backgroundImage": "assets/cover.png"
   },

@@ -1,11 +1,11 @@
 ---
-name: wechat-weekly-video
-description: Create short narrated WeChat public account weekly videos from draft articles, account material, or social-post summaries. Use when asked to turn a Codex/ClaudeDevs/公众号 weekly article or material folder into a 3:4 WeChat Channels-ready MP4 plus cover image, including article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, material-center BGM mixing, and QA checks.
+name: wechat-video
+description: Create short narrated WeChat public account WeChat videos from draft articles, account material, or social-post summaries. Use when asked to turn a Codex/ClaudeDevs/公众号 article or material folder into a 3:4 WeChat Channels-ready MP4 plus cover image, including article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, material-center BGM mixing, and QA checks.
 ---
 
-# WeChat Weekly Video
+# WeChat Video
 
-Create a reproducible weekly-video project that outputs exactly two publishable artifacts:
+Create a reproducible video project that outputs exactly two publishable artifacts:
 
 - `output/<slug>.mp4`
 - `output/<slug>-cover.png`
@@ -24,6 +24,7 @@ Default target: `1080x1440`, `3:4`, `30fps`, about `45-60s`.
 - Use the material-center BGM mode unless the user explicitly asks for a different track: `Mixkit Tech House Vibes 130`, copied into generated projects as `assets/materials/bgm/mixkit-tech-house-vibes-130.mp3`, with `bgm.volume=0.035`, `fadeIn=0.8`, and `fadeOut=1`. Do not synthesize BGM with FFmpeg oscillators/noise for normal runs.
 - Do not leave scenes static after the entrance animation. Every scene should have obvious continuous motion during its hold: visible sweep lines, moving dots/rings, background parallax, and card/point movement. Subtle drift alone is not enough.
 - Use official/source-account avatars for brand logos. Do not invent a brand logo, redraw another company's logo, or substitute a fan/community account avatar for an official company account.
+- If an X/Twitter card screenshot already exists, use that original card as the primary scene visual. Do not shrink it into a small thumbnail inside another decorative card; make the X card large enough to read on a phone.
 
 ## Workflow
 
@@ -31,7 +32,7 @@ Default target: `1080x1440`, `3:4`, `30fps`, about `45-60s`.
 2. Prefer article-first planning when a draft Markdown exists:
 
 ```bash
-npx --yes tsx /path/to/wechat-weekly-video/scripts/plan-from-article.ts \
+npx --yes tsx /path/to/wechat-video/scripts/plan-from-article.ts \
   --article /path/to/draft.md \
   --out /path/to/article/video \
   --materials /path/to/material-folder \
@@ -43,10 +44,11 @@ This creates the video project, writes `video.config.json`, copies matched image
 3. If no article exists, create an empty project from the bundled template:
 
 ```bash
-npx --yes tsx /path/to/wechat-weekly-video/scripts/new-project.ts --out /path/to/article/video
+npx --yes tsx /path/to/wechat-video/scripts/new-project.ts --out /path/to/article/video
 ```
 
 4. Review and edit `/path/to/article/video/video.config.json`.
+   - Reusable completed examples live under `examples/video-configs/`; copy one into a generated project as `video.config.json` when starting a similar Codex or Claude daily video.
 5. Put extra local assets under `/path/to/article/video/assets/` if needed. Reusable skill materials are copied into `/path/to/article/video/assets/materials/`.
    - Reuse BGM and voice snippets from `/path/to/article/video/assets/materials/bgm-presets.json` and `/path/to/article/video/assets/materials/voice-presets.json`.
    - Reuse bundled official avatars from `assets/official-logos/` when a video needs Codex, Claude, OpenAI, or Anthropic source identity.
@@ -79,7 +81,7 @@ Optional scene fields:
 - `card`
 - `logo` (right-bottom audio-reactive badge override; default is `brand.logo`)
 
-Use 5-6 scenes for a 50s weekly video. Keep `speech` short enough for the configured target duration.
+Use 5-6 scenes for a 50s video. Keep `speech` short enough for the configured target duration.
 
 ## What Users Can Customize
 
@@ -119,7 +121,7 @@ Key constraints:
 - Keep all real text inside safe margins.
 - Mark purely decorative pseudo-text with `data-layout-ignore` or render it through CSS pseudo-elements so contrast/layout checks do not treat it as body copy.
 - If an element intentionally overflows for background texture, mark it with `data-layout-allow-overflow`.
-- Make Reddit/X/source cards legible but secondary to the episode claim.
+- Make Reddit/X/source cards legible but secondary to the episode claim. For existing X/Twitter card screenshots, render the screenshot itself as the dominant card visual instead of rebuilding a tiny duplicate card around it.
 - Avoid still frames. If a scene visually holds for more than about one second, add obvious ambient movement rather than leaving every layer fixed.
 - Keep signal lines visibly breathing/growing and the lower-right logo badge pulsing during spoken sections.
 - Use the actual source account avatar for the lower-right logo badge, such as `@OpenAI` for OpenAI material and `@AnthropicAI` for Anthropic material.
@@ -141,8 +143,8 @@ This skill is intentionally self-contained so the same git repository can be use
 Install by cloning the repository, then link the same directory into each agent runtime:
 
 ```bash
-ln -s /path/to/wechat-weekly-video ~/.codex/skills/wechat-weekly-video
-ln -s /path/to/wechat-weekly-video ~/.claude/skills/wechat-weekly-video
+ln -s /path/to/wechat-video ~/.codex/skills/wechat-video
+ln -s /path/to/wechat-video ~/.claude/skills/wechat-video
 ```
 
 Codex reads `SKILL.md` and `agents/openai.yaml`. Claude Code reads `SKILL.md`; it can ignore `agents/openai.yaml`.

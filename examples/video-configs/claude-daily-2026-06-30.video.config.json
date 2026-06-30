@@ -1,0 +1,149 @@
+{
+  "issueDate": "2026-06-30",
+  "account": "ClaudeDevs",
+  "title": "今日 Claude 动态: Foundry、工程访谈和额度争议",
+  "slug": "claudedevs-daily-claude-2026-06-30",
+  "duration": {
+    "targetSeconds": 64,
+    "fps": 30,
+    "width": 1080,
+    "height": 1440
+  },
+  "outputs": {
+    "video": "output/claudedevs-daily-claude-2026-06-30.mp4",
+    "cover": "output/claudedevs-daily-claude-2026-06-30-cover.png",
+    "coverAtSeconds": 5
+  },
+  "voice": {
+    "provider": "edge-tts",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "+30%",
+    "pitch": "-5Hz",
+    "gapSeconds": 0.12
+  },
+  "bgm": {
+    "file": "assets/materials/bgm/mixkit-tech-house-vibes-130.mp3",
+    "sourceName": "Mixkit Tech House Vibes 130",
+    "volume": 0.035,
+    "fadeIn": 0.8,
+    "fadeOut": 1
+  },
+  "audio": {
+    "voiceGain": 1.25,
+    "targetI": -13,
+    "targetLRA": 11,
+    "targetTP": -1.5
+  },
+  "brand": {
+    "name": "ClaudeDevs",
+    "footer": "ClaudeDevs · 今日 Claude 动态",
+    "theme": "warm-editorial",
+    "backgroundImage": "assets/source/claude-foundry-cover.png",
+    "logo": "assets/official-logos/claudeai-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "eyebrow": "Daily Claude",
+      "chip": "2026.06.30",
+      "headline": ["今日 Claude", "动态", "看一遍"],
+      "note": "今日 Claude 动态:五条更新。",
+      "caption": "今日 Claude 动态",
+      "speech": "今天的 Claude 动态有五条。Microsoft Foundry 正式可用,Spotify 工程访谈给出 AI 研发数据,Claude Code 发了新版本,社区还在讨论 skill 文件和额度限制。",
+      "ghost": "DAILY",
+      "logo": "assets/official-logos/claudeai-avatar.jpg"
+    },
+    {
+      "eyebrow": "Enterprise",
+      "chip": "Foundry",
+      "headline": ["Claude 进入", "Microsoft", "Foundry"],
+      "note": "",
+      "caption": "Claude 正式进入 Microsoft Foundry",
+      "speech": "第一条是官方更新。Claude in Microsoft Foundry 已经正式可用,重点不是模型名本身,而是企业可以沿着 Azure 的认证、计费和基础设施来部署 Claude。",
+      "ghost": "AZURE",
+      "logo": "assets/official-logos/claudeai-avatar.jpg",
+      "points": ["Azure 环境内运行", "企业认证和计费打通", "面向大客户采购路径"],
+      "card": {
+        "label": "@claudeai",
+        "title": "Claude in Microsoft Foundry",
+        "body": "官方宣布 Foundry 正式可用,Azure 客户可以把 Claude 接入企业云环境。",
+        "metaLeft": "44.9 万浏览",
+        "metaRight": "official",
+        "image": "assets/source/claude-foundry-cover.png"
+      }
+    },
+    {
+      "eyebrow": "Engineering",
+      "chip": "Spotify",
+      "headline": ["Spotify 的", "AI 工程流", "有数据了"],
+      "note": "",
+      "caption": "Spotify 访谈透露 AI 工程数据",
+      "speech": "第二条是工程访谈。Spotify 每天四千五百次生产部署,而且百分之七十三的 PR 已经有 AI 辅助。这比单纯说智能更有参考价值。",
+      "ghost": "SHIPPING",
+      "logo": "assets/source/claudedevs-avatar.jpg",
+      "points": ["4500 次生产部署/天", "73% PR 有 AI 辅助", "核心问题变成验证"],
+      "card": {
+        "label": "@ClaudeDevs",
+        "title": "Spotify VP Engineering interview",
+        "body": "Boris 与 Spotify 工程 VP 聊 AI 辅助开发,重点落在生产环境和验证机制。",
+        "metaLeft": "23.0 万浏览",
+        "metaRight": "interview",
+        "image": "assets/source/spotify-ai-pr-cover.png"
+      }
+    },
+    {
+      "eyebrow": "Claude Code",
+      "chip": "2.1.196",
+      "headline": ["Claude Code", "新版本", "偏管理"],
+      "note": "",
+      "caption": "Claude Code 2.1.196 发布",
+      "speech": "第三条是 Claude Code 二点一一九六。它不是炫技版本,更像管理和安全补丁:组织默认模型、Grep 搜索建议,还有 MCP 不再自动启动本地服务器。",
+      "ghost": "CLI",
+      "logo": "assets/source/claudecodelog-avatar.jpg",
+      "points": ["组织默认模型", "Grep 搜索建议更明确", "MCP 本地服务需审批"],
+      "card": {
+        "label": "@ClaudeCodeLog",
+        "title": "Claude Code 2.1.196",
+        "body": "27 项 CLI 变更,重点是组织管理、搜索任务和不受信工作区的执行边界。",
+        "metaLeft": "4,674 浏览",
+        "metaRight": "changelog",
+        "image": "assets/source/claude-code-2196-cover.png"
+      }
+    },
+    {
+      "eyebrow": "Skills",
+      "chip": "community",
+      "headline": ["好 Skill", "不是简历", "是伤疤"],
+      "note": "社区在讨论:skill 不该重复专家人设,而要固化 Claude 经常漏掉的具体约束。",
+      "caption": "社区重新定义什么是好 Skill",
+      "speech": "第四条来自社区。大家在吐槽很多 skill 文件只是在重复专家人设。真正有用的 skill,应该记录某个工作流里反复踩过的坑。",
+      "ghost": "SKILL",
+      "logo": "assets/official-logos/claudeai-avatar.jpg",
+      "points": ["别写泛泛专家人设", "写具体项目约定", "写模型常漏的检查项"],
+      "card": {
+        "label": "r/ClaudeAI",
+        "title": "What makes a useful skill?",
+        "body": "讨论焦点是:skill 要修正稳定错误,而不是告诉模型什么是开发者。",
+        "metaLeft": "community",
+        "metaRight": "discussion"
+      }
+    },
+    {
+      "eyebrow": "Limits",
+      "chip": "feedback",
+      "headline": ["额度争议", "又成了", "信任问题"],
+      "note": "用户反馈 Max x5 额度 2 到 3 天耗尽,希望官方解释。",
+      "caption": "额度限制引发社区反馈",
+      "speech": "最后是额度限制。社区里有人反馈 Max x5 的周额度两三天就耗尽。无论原因是什么,用户真正要的是可解释的用量和及时沟通。",
+      "ghost": "LIMITS",
+      "logo": "assets/official-logos/anthropicai-avatar.jpg",
+      "points": ["异常消耗需要解释", "透明用量比口径更重要", "企业扩张也要守住体验"],
+      "card": {
+        "label": "r/ClaudeCode",
+        "title": "Usage limits discussion",
+        "body": "社区把额度异常、重置诉求和官方回应放在一起讨论。",
+        "metaLeft": "Jun 29",
+        "metaRight": "feedback"
+      }
+    }
+  ]
+}

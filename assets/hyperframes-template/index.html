@@ -567,14 +567,14 @@
 
       var fallbackConfig = {
         duration: { targetSeconds: 50, width: 1080, height: 1440 },
-        brand: { footer: "WeChat Weekly Video" },
+        brand: { footer: "WeChat Video" },
         scenes: [
           {
             eyebrow: "Weekly",
             chip: "draft",
             headline: ["Video", "template"],
             note: "Run npm run sync before preview or render.",
-            caption: "weekly video draft",
+            caption: "video draft",
             speech: "Run sync first.",
             ghost: "Draft"
           }
@@ -758,7 +758,7 @@
       captionRail.appendChild(el("div", "voice-caption"));
       captionRail.querySelector(".voice-caption").id = "voice-caption";
       root.appendChild(captionRail);
-      root.appendChild(el("div", "brand", (config.brand && config.brand.footer) || "WeChat Weekly Video"));
+      root.appendChild(el("div", "brand", (config.brand && config.brand.footer) || "WeChat Video"));
 
       var captions = scenes.map(function (scene, index) {
         var start = index * sceneLength + 0.35;
