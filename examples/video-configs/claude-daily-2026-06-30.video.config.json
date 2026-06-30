@@ -1,6 +1,10 @@
 {
   "issueDate": "2026-06-30",
   "account": "ClaudeDevs",
+  "template": {
+    "kind": "daily",
+    "source": "vault"
+  },
   "title": "今日 Claude 动态: Foundry、工程访谈和额度争议",
   "slug": "claudedevs-daily-claude-2026-06-30",
   "duration": {

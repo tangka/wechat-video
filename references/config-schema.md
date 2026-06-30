@@ -8,6 +8,10 @@
 {
   "issueDate": "2026-06-28",
   "account": "ClaudeDevs",
+  "template": {
+    "kind": "weekly",
+    "source": "vault"
+  },
   "title": "一周 Claude: Fable、降智和工作流",
   "slug": "claude-weekly-2026-06-28",
   "duration": {
@@ -77,6 +81,8 @@
 
 ## Defaults
 
+- `template.kind`: `daily` or `weekly`
+- `template.source`: `vault`
 - `duration.width`: `1080`
 - `duration.height`: `1440`
 - `duration.fps`: `30`
@@ -119,6 +125,11 @@ Run `npm run voices` inside a generated project to synthesize local audition fil
 - `brand.backgroundImage`: local image path, such as `assets/cover.png`. Use this for a generated cover background, X screenshot, or account-specific visual. Omit it when no image is needed.
 - `brand.logo`: local image path used by the lower-right audio-reactive badge when a scene does not define `logo`. Prefer the official/source-account avatar already captured in the material library. Do not use generated placeholder logos or another account's avatar.
 - `brand.theme`: currently documented for humans; change CSS in `index.html` intentionally before relying on new theme names.
+
+## Template Modes
+
+- `daily`: 今日动态 / 日常更新. Use this for a short video built from one day's vault material.
+- `weekly`: 周刊复盘 / 一周总结. Use this for a recap video built from a multi-day theme or article.
 
 ## Optional Scene Visual Fields
 

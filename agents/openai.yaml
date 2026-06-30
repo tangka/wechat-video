@@ -1,7 +1,7 @@
 interface:
   display_name: "WeChat Video"
-  short_description: "Plan and generate 3:4 WeChat videos"
+  short_description: "Generate daily or weekly WeChat videos from a local vault"
   brand_color: "#CD704F"
-  default_prompt: "Use $wechat-video to turn a WeChat article and its material folder into a 3:4 video and cover."
+  default_prompt: "Use $wechat-video to turn local vault content into a daily or weekly 3:4 WeChat video and cover."
 policy:
   allow_implicit_invocation: true

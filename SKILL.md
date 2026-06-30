@@ -1,11 +1,16 @@
 ---
 name: wechat-video
-description: Create short narrated WeChat public account WeChat videos from draft articles, account material, or social-post summaries. Use when asked to turn a Codex/ClaudeDevs/公众号 article or material folder into a 3:4 WeChat Channels-ready MP4 plus cover image, including article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, material-center BGM mixing, and QA checks.
+description: Create short narrated WeChat public account videos from a local公众号 vault, including draft articles, daily update material, weekly recap material, and social-post summaries. Use when asked to turn Codex/ClaudeDevs/公众号 vault content into a 3:4 WeChat Channels-ready MP4 plus cover image, with daily and weekly template modes, article-to-scene planning, local asset matching, TypeScript scripts, HyperFrames rendering, TTS narration, material-center BGM mixing, and QA checks.
 ---
 
 # WeChat Video
 
-Create a reproducible video project that outputs exactly two publishable artifacts:
+Create a reproducible video project from a local公众号 vault. The skill supports two template modes:
+
+- `daily`: daily updates / 今日动态.
+- `weekly`: weekly recap / 周刊复盘.
+
+Each generated project outputs exactly two publishable artifacts:
 
 - `output/<slug>.mp4`
 - `output/<slug>-cover.png`
@@ -17,6 +22,7 @@ Default target: `1080x1440`, `3:4`, `30fps`, about `45-60s`.
 - Use TypeScript scripts for project automation. Do not add Python scripts to the generated video project.
 - Use HyperFrames for authored motion graphics. Produce native `1080x1440`; do not fake `3:4` by padding a shorter composition after render.
 - Treat `video.config.json` as the source of truth for account, title, dimensions, voice, BGM, scenes, output names, and cover timestamp.
+- Set `template.kind` to `daily` or `weekly`. Use `daily` for today's product/community updates, and `weekly` for recap videos that summarize a multi-day theme.
 - Generate or re-synthesize narration for the target duration. Do not stretch old audio unless the user explicitly asks.
 - Deliver video plus cover. The cover must match the configured output dimensions.
 - Run QA before handoff: `ffprobe` dimensions/duration, HyperFrames `validate`/`inspect`, contact sheet, and at least one hero-frame extraction.
@@ -28,7 +34,7 @@ Default target: `1080x1440`, `3:4`, `30fps`, about `45-60s`.
 
 ## Workflow
 
-1. Locate the article draft and source materials.
+1. Locate the article draft and source materials under the公众号 vault, usually `<vault>/微信公众号/<账号>/待发布/...` and `<vault>/微信公众号/<账号>/素材库/<日期>/...`.
 2. Prefer article-first planning when a draft Markdown exists:
 
 ```bash
@@ -48,7 +54,7 @@ npx --yes tsx /path/to/wechat-video/scripts/new-project.ts --out /path/to/articl
 ```
 
 4. Review and edit `/path/to/article/video/video.config.json`.
-   - Reusable completed examples live under `examples/video-configs/`; copy one into a generated project as `video.config.json` when starting a similar Codex or Claude daily video.
+   - Reusable completed examples live under `examples/video-configs/`; copy one into a generated project as `video.config.json` when starting a similar Codex/Claude daily or weekly video.
 5. Put extra local assets under `/path/to/article/video/assets/` if needed. Reusable skill materials are copied into `/path/to/article/video/assets/materials/`.
    - Reuse BGM and voice snippets from `/path/to/article/video/assets/materials/bgm-presets.json` and `/path/to/article/video/assets/materials/voice-presets.json`.
    - Reuse bundled official avatars from `assets/official-logos/` when a video needs Codex, Claude, OpenAI, or Anthropic source identity.
@@ -82,6 +88,11 @@ Optional scene fields:
 - `logo` (right-bottom audio-reactive badge override; default is `brand.logo`)
 
 Use 5-6 scenes for a 50s video. Keep `speech` short enough for the configured target duration.
+
+Template fields:
+
+- `template.kind`: `daily` or `weekly`
+- `template.source`: usually `vault`
 
 ## What Users Can Customize
 

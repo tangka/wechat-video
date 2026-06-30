@@ -1,6 +1,11 @@
 # wechat-video
 
-把公众号文章、素材目录或短脚本生成视频号可发布的 3:4 解说视频。
+根据公众号 vault 里的文章、待发布目录和今日动态素材，生成视频号可发布的 3:4 解说视频。
+
+内置两种视频模板：
+
+- `daily`：日常动态，适合把当天 Codex / Claude / AI 产品更新做成 45-70 秒短视频。
+- `weekly`：周刊复盘，适合把一周主题、趋势和社区反馈做成结构化复盘视频。
 
 标准输出固定为：
 
@@ -11,8 +16,8 @@
 
 ## 适合谁用
 
-- 想把公众号文章复用成视频号短视频的人。
-- 想把 X / Reddit / 官方公告素材做成解说视频的人。
+- 想把公众号 vault 里的文章、待发布稿和素材复用成视频号短视频的人。
+- 想把 X / Reddit / 官方公告动态做成解说视频的人。
 - 想把 Codex / Claude Code 的视频生产流程固化成 Skill 的人。
 
 这个仓库不是单个视频模板，而是一套视频生产 Harness：文章规划、素材匹配、口播合成、BGM 混音、HyperFrames 动效渲染、封面导出和 QA 检查都在同一个项目里。
@@ -45,14 +50,21 @@ cd /path/to/wechat-video
 git pull
 ```
 
-## 最推荐的用法：文章 + 素材目录
+## 最推荐的用法：从 Vault 生成
+
+典型输入来自公众号 vault：
+
+```text
+<vault>/微信公众号/<账号>/待发布/<草稿目录>/<草稿>.md
+<vault>/微信公众号/<账号>/素材库/<日期>/<素材目录>/
+```
 
 如果已经有公众号草稿 Markdown，优先用文章规划脚本：
 
 ```bash
 npx --yes tsx /path/to/wechat-video/scripts/plan-from-article.ts \
   --article /path/to/article.md \
-  --materials /path/to/material-folder \
+  --materials /path/to/vault/微信公众号/<账号>/素材库/<日期> \
   --out /path/to/article/video \
   --force
 ```
@@ -97,6 +109,37 @@ npx --yes tsx /path/to/wechat-video/scripts/new-project.ts \
 
 ```text
 /path/to/video-project/video.config.json
+```
+
+可直接从样本开始：
+
+```bash
+cp /path/to/wechat-video/examples/video-configs/codex-daily-2026-06-30.video.config.json \
+  /path/to/video-project/video.config.json
+```
+
+## 模板类型
+
+`video.config.json` 里用 `template.kind` 标明视频类型：
+
+```json
+"template": {
+  "kind": "daily",
+  "source": "vault"
+}
+```
+
+可选值：
+
+| `template.kind` | 用途 |
+|-|-|
+| `daily` | 今日动态 / 日常更新 |
+| `weekly` | 周刊复盘 / 一周总结 |
+
+样本配置放在：
+
+```text
+/path/to/wechat-video/examples/video-configs/
 ```
 
 ## 素材中心
@@ -144,6 +187,7 @@ Skill 仓库里有一个专门给别人配置和扩展的素材中心：
 | 位置 | 作用 |
 |-|-|
 | `title` | 视频标题 |
+| `template.kind` | 模板类型：`daily` 或 `weekly` |
 | `slug` | 输出文件名 |
 | `duration.targetSeconds` | 目标时长 |
 | `outputs.video` | MP4 输出路径 |
@@ -410,7 +454,7 @@ npm run qa
 ## 给 Agent 的一句话提示
 
 ```text
-使用 wechat-video，把这篇公众号文章和素材目录生成视频号 3:4 视频。
+使用 wechat-video，根据公众号 vault 里的草稿和今日动态素材生成视频号 3:4 视频。
 先用 plan-from-article.ts 生成 video.config.json 和 video-plan.md。
 我会审稿；通过后再 npm run build。
 标准输出是 output/<slug>.mp4 和 output/<slug>-cover.png。

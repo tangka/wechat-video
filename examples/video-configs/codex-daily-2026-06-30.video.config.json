@@ -1,6 +1,10 @@
 {
   "issueDate": "2026-06-30",
   "account": "Codexx",
+  "template": {
+    "kind": "daily",
+    "source": "vault"
+  },
   "title": "今日 Codex 动态: 快捷键、权限和额度重置",
   "slug": "codexx-daily-codex-2026-06-30",
   "duration": {
